@@ -1,0 +1,36 @@
+# Runtime dependencies. Versions are the ones this project was verified against.
+#
+# Install torch FIRST from the CPU index, otherwise pip pulls the ~2.5 GB CUDA
+# build from PyPI. The `+cpu` wheels satisfy the pins below:
+#   pip install torch==2.14.0 torchvision==0.29.0 --index-url https://download.pytorch.org/whl/cpu
+#   pip install -r requirements.txt
+
+# ---- API ---------------------------------------------------------------------
+fastapi==0.141.1
+uvicorn[standard]==0.52.4
+python-multipart==0.0.32
+# Outbound client for the Gemini explanation call.
+httpx==0.28.1
+
+# ---- Storage -----------------------------------------------------------------
+SQLAlchemy==2.0.52
+chromadb==1.5.9
+# Uncomment for a MySQL DATABASE_URL (mysql+pymysql://...):
+# PyMySQL==1.1.2
+
+# ---- Config ------------------------------------------------------------------
+pydantic==2.13.5
+pydantic-settings==2.15.0
+python-dotenv==1.2.3
+
+# ---- Auth --------------------------------------------------------------------
+bcrypt==5.0.0
+PyJWT==2.13.0
+
+# ---- Models & media ----------------------------------------------------------
+torch==2.14.0
+# torchvision is what transformers uses for the fast CLIP image processor. Without
+# it the Pillow implementation is used instead, which works but is slower.
+torchvision==0.29.0
+transformers==5.16.1
+pillow==12.3.0

@@ -1,0 +1,92 @@
+.wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+}
+
+.zone {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 26px 20px 22px;
+  border: 1px dashed var(--border-strong);
+  border-radius: var(--radius);
+  background: var(--surface);
+  text-align: center;
+  transition:
+    border-color var(--transition),
+    background var(--transition),
+    transform var(--transition);
+}
+
+/* Children must not swallow pointer events, or dragging over the icon fires
+   dragleave on the zone and the highlight flickers. */
+.zone > * {
+  pointer-events: none;
+}
+
+.zone:hover:not(:disabled) {
+  border-color: var(--accent-border);
+  background: var(--surface-2);
+}
+
+.zone:active:not(:disabled) {
+  transform: translateY(1px);
+}
+
+.zone:disabled {
+  cursor: progress;
+  opacity: 0.65;
+}
+
+.dragging {
+  border-style: solid;
+  border-color: var(--accent);
+  background: var(--accent-bg);
+}
+
+.glyph {
+  margin-bottom: 4px;
+  color: var(--accent);
+  font-size: 26px;
+  line-height: 1;
+}
+
+.title {
+  color: var(--text);
+  font-size: 15px;
+  font-weight: 650;
+}
+
+.description {
+  max-width: 30ch;
+  color: var(--text-muted);
+  font-size: 12.5px;
+  line-height: 1.45;
+}
+
+.cta {
+  margin-top: 8px;
+  color: var(--text-dim);
+  font-family: var(--mono);
+  font-size: 11px;
+}
+
+.hint {
+  color: var(--text-dim);
+  font-size: 10.5px;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+.input {
+  display: none;
+}
+
+.rejected {
+  color: var(--red);
+  font-size: 12px;
+}

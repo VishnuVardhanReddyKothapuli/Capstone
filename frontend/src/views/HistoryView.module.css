@@ -1,0 +1,97 @@
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.chip {
+  padding: 5px 13px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-pill);
+  background: var(--surface);
+  color: var(--text-muted);
+  font-size: 12.5px;
+  font-weight: 600;
+  transition:
+    border-color var(--transition),
+    background var(--transition),
+    color var(--transition);
+}
+
+.chip:hover {
+  border-color: var(--border-strong);
+  color: var(--text);
+}
+
+.chipActive {
+  border-color: var(--accent-border);
+  background: var(--accent-bg);
+  color: var(--accent);
+}
+
+.count {
+  color: var(--text-dim);
+  font-family: var(--mono);
+  font-size: 11.5px;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  transition: opacity var(--transition);
+}
+
+/* Keeps the previous page visible while the next one loads. */
+.stale {
+  opacity: 0.5;
+}
+
+.pager {
+  display: flex;
+  gap: 8px;
+}
+
+.pageButton {
+  padding: 7px 15px;
+  border: 1px solid var(--text);
+  border-radius: var(--radius-sm);
+  background: var(--text);
+  color: var(--bg);
+  font-size: 13px;
+  font-weight: 600;
+  transition:
+    opacity var(--transition);
+}
+
+.pageButton:hover:not(:disabled) {
+  opacity: 0.85;
+}
+
+.pageButton:disabled {
+  cursor: not-allowed;
+  color: var(--text-dim);
+  opacity: 0.45;
+}
+
+.muted {
+  color: var(--text-muted);
+  font-size: 13.5px;
+}
+
+.error {
+  padding: 10px 13px;
+  border: 1px solid var(--red-border);
+  border-radius: var(--radius-sm);
+  background: var(--red-bg);
+  color: var(--red);
+  font-size: 13px;
+}

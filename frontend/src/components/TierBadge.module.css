@@ -1,0 +1,52 @@
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 4px 11px 4px 8px;
+  border: 1px solid var(--tier-border, var(--border));
+  border-radius: var(--radius-pill);
+  background: var(--tier-bg, var(--surface-2));
+  color: var(--tier, var(--text));
+  font-size: 12.5px;
+  font-weight: 620;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+
+.small {
+  padding: 2px 9px 2px 6px;
+  font-size: 11.5px;
+}
+
+.glyph {
+  display: grid;
+  place-items: center;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background: var(--tier, var(--text-muted));
+  color: var(--bg);
+  font-size: 10px;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.small .glyph {
+  width: 13px;
+  height: 13px;
+  font-size: 9px;
+}
+
+.label {
+  text-transform: uppercase;
+}
+
+.detail {
+  padding-left: 7px;
+  border-left: 1px solid var(--tier-border, var(--border));
+  color: var(--text-muted);
+  font-family: var(--mono);
+  font-weight: 500;
+  letter-spacing: 0;
+  text-transform: none;
+}

@@ -1,0 +1,5 @@
+-r requirements.txt
+
+# Test-only. httpx backs fastapi.testclient.TestClient.
+pytest==9.1.1
+httpx==0.28.1

@@ -1,0 +1,52 @@
+.metric {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 0;
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--surface-2);
+}
+
+.label {
+  color: var(--text-dim);
+  font-size: 10.5px;
+  font-weight: 650;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+
+.value {
+  overflow: hidden;
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: 16px;
+  font-weight: 600;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.tinted {
+  color: var(--tier, var(--text));
+}
+
+.track {
+  overflow: hidden;
+  height: 4px;
+  margin-top: 3px;
+  border-radius: var(--radius-pill);
+  background: var(--surface-3);
+}
+
+.fill {
+  display: block;
+  height: 100%;
+  border-radius: var(--radius-pill);
+  background: var(--text-dim);
+  transition: width 220ms ease;
+}
+
+.tintedFill {
+  background: var(--tier, var(--text-dim));
+}

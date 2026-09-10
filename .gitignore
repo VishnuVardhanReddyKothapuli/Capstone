@@ -1,0 +1,40 @@
+# ---- Python ------------------------------------------------------------------
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# ---- Secrets and local config ------------------------------------------------
+# .env.example is committed; .env never is.
+.env
+.env.local
+
+# ---- Data stores -------------------------------------------------------------
+# Both are generated on first run. The DB holds uploaded images.
+*.db
+*.db-journal
+*.sqlite3
+backend/chroma_db/
+
+# ---- Model cache -------------------------------------------------------------
+# Only appears if HF_HOME is pointed inside the repo.
+.cache/
+models/
+
+# ---- Node / frontend ---------------------------------------------------------
+node_modules/
+frontend/dist/
+*.tsbuildinfo
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# ---- Editors and OS ----------------------------------------------------------
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+desktop.ini

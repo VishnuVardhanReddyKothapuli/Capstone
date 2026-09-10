@@ -1,0 +1,42 @@
+/* Shared page frame: every view opens with the same header block. */
+
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  width: 100%;
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 34px 30px 60px;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.eyebrow {
+  color: var(--accent);
+  font-size: 11px;
+  font-weight: 680;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.title {
+  font-size: 25px;
+}
+
+.subtitle {
+  max-width: 68ch;
+  color: var(--text-muted);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+@media (max-width: 860px) {
+  .page {
+    padding: 24px 18px 48px;
+  }
+}
