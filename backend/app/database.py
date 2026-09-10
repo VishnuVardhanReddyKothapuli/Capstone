@@ -13,9 +13,12 @@ from app.config import settings
 logger = logging.getLogger(__name__)
 
 _is_sqlite = settings.DATABASE_URL.startswith("sqlite")
+_db_url = settings.DATABASE_URL
+if _db_url.startswith("postgres://"):
+    _db_url = _db_url.replace("postgres://", "postgresql://", 1)
 
 engine = create_engine(
-    settings.DATABASE_URL,
+    _db_url,
     # FastAPI runs sync endpoints in a threadpool, so a SQLite connection can be
     # touched by a different thread than the one that opened it.
     connect_args={"check_same_thread": False} if _is_sqlite else {},
