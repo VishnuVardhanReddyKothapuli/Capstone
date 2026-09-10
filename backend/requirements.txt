@@ -15,6 +15,7 @@ httpx==0.28.1
 # ---- Storage -----------------------------------------------------------------
 SQLAlchemy==2.0.52
 chromadb==1.5.9
+psycopg2-binary>=2.9.9
 # Uncomment for a MySQL DATABASE_URL (mysql+pymysql://...):
 # PyMySQL==1.1.2
 
