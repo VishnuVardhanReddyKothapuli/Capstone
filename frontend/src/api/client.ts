@@ -12,8 +12,11 @@ function errorMessage(response: Response): string {
   // Response bodies are never shown: an upstream service could contain internals.
   return { 400: 'Please check the submitted information.', 403: 'You do not have access to this resource.', 404: 'The requested item was not found.', 409: 'That username or email is already in use.', 413: 'The selected file is too large.', 415: 'Please choose a supported image file.', 422: 'Please check the submitted information.', 429: 'Please wait a moment and try again.', 503: 'The service is temporarily unavailable. Please try again.' }[response.status] ?? 'Something went wrong. Please try again.'
 }
+const API_BASE = import.meta.env.VITE_API_URL || ''
+
 async function request<T>(path: string, init: RequestInit = {}): Promise<T> {
-  const response = await fetch(path, { ...init, headers: withAuth(init.headers as Record<string, string> | undefined) })
+  const url = path.startsWith('http') ? path : `${API_BASE}${path}`
+  const response = await fetch(url, { ...init, headers: withAuth(init.headers as Record<string, string> | undefined) })
   if (response.status === 401) {
     if (path.startsWith('/api/auth/login')) {
       throw new ApiError(401, 'Incorrect username or password.')
@@ -35,5 +38,5 @@ export const api = {
   models: () => request<ModelInfo>('/api/models'),
   adminSummary: () => request<{ users: number; checks: number }>('/api/admin/summary'),
   explain: (checkId: number, refresh = false) => request<CheckResult>(`/api/checks/${checkId}/explain${refresh ? '?refresh=true' : ''}`, { method: 'POST' }),
-  objectUrl: async (path: string) => { const response = await fetch(path, { headers: withAuth() }); if (response.status === 401) onUnauthorized?.(); if (!response.ok) throw new ApiError(response.status, errorMessage(response)); return URL.createObjectURL(await response.blob()) },
+  objectUrl: async (path: string) => { const url = path.startsWith('http') ? path : `${API_BASE}${path}`; const response = await fetch(url, { headers: withAuth() }); if (response.status === 401) onUnauthorized?.(); if (!response.ok) throw new ApiError(response.status, errorMessage(response)); return URL.createObjectURL(await response.blob()) },
 }

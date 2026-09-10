@@ -1,0 +1,46 @@
+services:
+  # 1. Database Service
+  - type: pserv
+    name: sentinal-db
+    env: postgres
+    databaseName: sentinal
+    user: sentinal
+    plan: free # Change this to a paid plan for production
+
+  # 2. Backend Web Service
+  - type: web
+    name: sentinal-backend
+    env: docker
+    dockerfilePath: ./backend/Dockerfile
+    dockerContext: ./backend
+    plan: starter # ML models require at least 512MB RAM, starter plan recommended
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: sentinal-db
+          property: connectionString
+      - key: CHROMA_PERSIST_DIR
+        value: /data/chroma_db
+      - key: FRONTEND_DIST
+        value: "" # We don't need the backend to serve the frontend
+      - key: CORS_ORIGINS
+        value: "https://sentinal.onrender.com" # Update this to your final frontend URL
+      - key: JWT_SECRET
+        generateValue: true
+      - key: ENVIRONMENT
+        value: production
+    disk:
+      name: chroma-storage
+      mountPath: /data
+      sizeGB: 1
+
+  # 3. Frontend Static Site
+  - type: web
+    name: sentinal
+    env: static
+    buildCommand: "npm install && npm run build"
+    staticPublishPath: "./dist" # Vite outputs to dist
+    rootDir: ./frontend
+    envVars:
+      - key: VITE_API_URL
+        value: "https://sentinal-backend.onrender.com" # Must match the backend service URL
