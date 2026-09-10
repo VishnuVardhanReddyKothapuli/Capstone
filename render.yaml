@@ -5,14 +5,14 @@ services:
     env: docker
     dockerfilePath: ./backend/Dockerfile
     dockerContext: ./backend
-    plan: starter # ML models require at least 512MB RAM, starter plan recommended
+    plan: free # Note: ML models might exceed the 512MB RAM limit on the free tier
     envVars:
       - key: DATABASE_URL
         fromDatabase:
           name: sentinal-db
           property: connectionString
       - key: CHROMA_PERSIST_DIR
-        value: /data/chroma_db
+        value: /app/chroma_db # Free tier does not support persistent disks, this will reset on deploy
       - key: FRONTEND_DIST
         value: "" # We don't need the backend to serve the frontend
       - key: CORS_ORIGINS
@@ -21,10 +21,6 @@ services:
         generateValue: true
       - key: ENVIRONMENT
         value: production
-    disk:
-      name: chroma-storage
-      mountPath: /data
-      sizeGB: 1
 
   # 2. Frontend Static Site
   - type: web
